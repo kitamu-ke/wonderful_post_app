@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
       @article = Article.new(article_params)
 
       if @article.save
-        redirect_to @article, notice: "Article was successfully created."
+        redirect_to @article, notice: "記事を作成しました"
       else
         render :new, status: :unprocessable_entity
       end
@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
   def update
     # respond_to do |format|
       if @article.update(article_params)
-        redirect_to @article, notice: "Article was successfully updated."
+        redirect_to @article, notice: "記事を編集しました"
       else
         render :edit, status: :unprocessable_entity
       end
