@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+    # binding.pry
     @article = Article.find(params[:id])
   end
 
@@ -22,7 +23,9 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
+      # binding.pry
       @article = Article.new(article_params)
+
       if @article.save
         redirect_to @article, notice: "Article was successfully created."
       else
@@ -32,22 +35,27 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    respond_to do |format|
+    # respond_to do |format|
       if @article.update(article_params)
         redirect_to @article, notice: "Article was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
-    end
+    # end
+
+    # @article = Article.find(params[:id])
+
+    # @article.update!(article_params)
+
+    # render :show
   end
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
+    # binding.pry
+    @article = Article.find(params[:id])
     @article.destroy
-
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-    end
+    # redirect_to articles_url, notice: "Article was successfully destroyed."
   end
 
   private
