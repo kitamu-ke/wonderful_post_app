@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[ index show ]
+  before_action :set_article, only: %i[ edit update destroy ]
 
   # GET /articles or /articles.json
   def index
@@ -23,8 +24,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
-      # binding.pry
-      @article = Article.new(article_params)
+      @article = current_user.articles.new(article_params)
 
       if @article.save
         redirect_to @article, notice: "記事を作成しました"
@@ -61,7 +61,7 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = current_user.articles.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
