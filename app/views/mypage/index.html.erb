@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>記事</h1>
+<h1>マイページ</h1>
+<%= render partial: "search" %>
+<%= paginate @articles %>
 <%= link_to '記事作成', new_article_path, class: "btn btn-info" %>
 
 <table class="table">
@@ -23,6 +25,5 @@
           </td>
       </tr>
     <% end %>
-    <%= paginate @articles %>
   </tbody>
 </table>

@@ -1,26 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <h1>記事</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">タイトル</th>
-      <th scope="col">内容</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @articles.each do |article| %>
+  <%= render partial: "search" %>
+  <%= paginate @articles %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= article.title %></td>
-        <td><%= article.content %></td>
+        <th scope="col">タイトル</th>
+        <th scope="col">内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each do |article| %>
+        <tr>
+          <td><%= article.title %></td>
+          <td><%= article.content %></td>
 
           <td>
               <%= link_to '詳細', article, class: "btn btn-success" %>
           </td>
-      </tr>
-    <% end %>
-    <%= paginate @articles %>
-  </tbody>
-
-</table>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
